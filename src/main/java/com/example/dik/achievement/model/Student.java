@@ -15,9 +15,6 @@ public class Student {
     private String name;
     @Column(name = "student_group")
     private String group;
-    /*
-    Achievements save in JSON format
-     */
     @ManyToMany(cascade = {CascadeType.ALL})
     @JoinTable(
             name = "Student_Achievement",

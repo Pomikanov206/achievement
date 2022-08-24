@@ -4,6 +4,8 @@ import com.example.dik.achievement.exception.ResourceNotFoundException;
 import com.example.dik.achievement.model.Student;
 import com.example.dik.achievement.repository.AchievementRepository;
 import com.example.dik.achievement.repository.StudentRepository;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+//@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/api/v1")
 public class AchievementController {
     @Autowired
@@ -20,8 +22,17 @@ public class AchievementController {
     StudentRepository studentRepository;
 
     @GetMapping("/students")
-    public List<Student> getAllStudents(){
-        return studentRepository.findAll();
+    public JSONArray getAllStudents(){
+        List<Student> students = studentRepository.findAll();
+        JSONArray studentList = new JSONArray();
+        for (Student student: students) {
+            JSONObject studentObject = new JSONObject();
+            studentObject.put("id", student.getId());
+            studentObject.put("name", student.getName());
+            studentObject.put("group", student.getGroup());
+            studentList.put(studentObject);
+        }
+        return studentList;
     }
 
     @GetMapping("/achievement/{id}")
