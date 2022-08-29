@@ -1,1 +1,7 @@
-<p>student-list works!</p>
+<h2>Find student</h2>
+<form >
+  <select name="groups">
+    <option value="" selected></option>
+    <option *ngFor="let student of studentsInfo" [value]="student.group">{{student.group}}</option>
+  </select>
+</form>
