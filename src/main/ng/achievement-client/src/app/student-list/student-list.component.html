@@ -1,7 +1,6 @@
 <h2>Find student</h2>
 <form >
   <select name="groups">
-    <option value="" selected></option>
-    <option *ngFor="let student of studentsInfo" [value]="student.group">{{student.group}}</option>
+    <option *ngFor="let student of studentGroup" [value]="student">{{student}}</option>
   </select>
 </form>

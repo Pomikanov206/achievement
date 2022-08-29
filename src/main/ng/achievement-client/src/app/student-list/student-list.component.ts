@@ -11,6 +11,7 @@ import { StudentInfo } from "../student-info";
 export class StudentListComponent implements OnInit {
   selectedValue: string = "";
   studentsInfo: StudentInfo[] = [];
+  studentGroup: Set<string> = new Set<string>();
 
   group_list: string[] = [ "ks1", "ks2"];
 
@@ -18,6 +19,9 @@ export class StudentListComponent implements OnInit {
 
   ngOnInit(): void {
     this.studentsInfo = this.studentService.getStudentList();
+    for(const student of this.studentsInfo) {
+      this.studentGroup.add(student.group);
+    }
   }
 
 }
