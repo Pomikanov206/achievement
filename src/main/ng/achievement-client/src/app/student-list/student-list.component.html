@@ -1,6 +1,13 @@
 <h2>Find student</h2>
 <form >
-  <select name="groups">
-    <option *ngFor="let student of studentGroup" [value]="student">{{student}}</option>
+  <select (change)="onChange($event.target.value)">
+    <option *ngFor="let student of studentGroup" >{{student}}</option>
   </select>
+  
+  <table>
+    <tr *ngFor="let student of filtredStudents" >
+      <td>{{student.id}}</td>
+      <td>{{student.name}}</td>
+    </tr>
+  </table>
 </form>

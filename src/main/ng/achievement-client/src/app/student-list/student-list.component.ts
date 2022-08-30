@@ -11,6 +11,7 @@ import { StudentInfo } from "../student-info";
 export class StudentListComponent implements OnInit {
   selectedValue: string = "";
   studentsInfo: StudentInfo[] = [];
+  filtredStudents: StudentInfo[] = [];
   studentGroup: Set<string> = new Set<string>();
 
   group_list: string[] = [ "ks1", "ks2"];
@@ -21,6 +22,15 @@ export class StudentListComponent implements OnInit {
     this.studentsInfo = this.studentService.getStudentList();
     for(const student of this.studentsInfo) {
       this.studentGroup.add(student.group);
+    }
+  }
+  
+  onChange(groupValue: any) {
+    this.filtredStudents = [];
+    console.log('click');
+    for(const student of this.studentsInfo) {
+      if(student.group == groupValue)
+        this.filtredStudents.push(student);
     }
   }
 
